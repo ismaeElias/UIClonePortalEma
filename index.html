@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <title>Processos - DOX Portal</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    *,input,button{
+      outline: 0;
+      box-sizing: border-box;
+    }
+    html,body{
+      width: 100vw;
+      height: 100vh;
+    }
+    .container{
+      width: 100%;
+      height: 100%;
+      display: grid;
+
+      grid-template-columns: 50px auto ;
+      grid-template-rows: 50px 80px auto;
+      grid-template-areas: 
+      'HT HT'
+      'MD SM'
+      'MD CD' 
+      ;
+    }
+    .topo{
+      background-color: #5e2981;
+      grid-area: HT;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1em;
+    }
+
+    .topo svg{
+      fill: white;
+      width: 22px;
+      height: 21px;
+      cursor: pointer;
+    }
+    .logoUsuario{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .topo-Main{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topo-Main svg, .logoUsuario{
+      margin-left: 25px;
+    }
+    .action{
+      display: flex;
+      align-items: center;
+    }
+    .menu{
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+      background-color: #f8f8f8;
+      grid-area: MD;
+      border-right: 1px solid #d5d5d5;
+    }
+    
+    .modulos ul{
+      width: 100%;
+      list-style: none;
+      
+    }
+    .modulos li{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      cursor: pointer;
+    }
+    .modulos svg{
+      width: 19px;
+      height: 19px;
+      fill: #999999;
+    }
+    .modulos .Marker-Processo svg{
+      fill: #30c995;
+    }
+    .modulos .Marker-Processo{
+      background-color: #e8e9ec;
+      border-left: 4px solid #30c995;
+    }
+    .versao{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 35px;
+      border-top: 1px solid #d5d5d5;
+      cursor: pointer;
+    }
+    .versao svg{
+      width: 15px;
+      height: 15px;
+      fill: #ababab;
+    }
+    .submenu{
+      height: 100%;
+      background-color: white;
+      grid-area: SM;
+      border-bottom: 1px solid #d5d5d5; 
+    }
+
+    .submenu-Header{
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .submenu-bottom{
+      display: flex;
+      justify-content: flex-start;
+      height: 50%;
+      padding: 0 1.4em;
+    }
+
+    .submenu-bottom ul{
+      display: flex;
+      list-style: none;
+    }
+    
+    .submenu-bottom li{
+      font-size: 12px;
+      margin-right: 13px;
+      cursor: pointer;
+    }
+
+    .submenu-bottom li{
+      margin-top: 5px;
+      padding: 1.0em 0.5em 1.1em 0.5em;
+    }
+    .submenu-Header p {
+      margin-left: 5px;
+      color : #555555;
+    }
+
+    #marcador{
+      padding-bottom: 0.3em;
+      border-bottom: 1px solid black;
+    }
+    .conteudo{
+      background-color: #ececf0;
+      grid-area: CD;
+    }
+
+    .logoProcesso{
+      fill: #30c995;
+      width: 28px;
+      height: 28x;
+      margin-left: 20px;
+    }
+
+    .conteudo{      
+      padding: 20px;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+    .tituloAgrupador{
+      width: 100%;
+      margin-left: 8px;
+      margin-bottom: 10px;
+    }
+
+    .container-Card{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+::-webkit-scrollbar {
+  width: 8px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #b6b9ba;
+  border: 0px none #b6b9ba;
+  
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #dedede;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+    .card{
+      background-color: white;
+      width: 200px;
+      height: 130px;
+      border-radius: 10px;
+      border: 1px solid #d5d5d5;
+      margin: 8px;
+    }
+    @media(max-width:600px){
+      .container{
+        width: 100%;
+        height: 100%;
+        display: grid;
+
+      grid-template-columns:  auto ;
+      grid-template-rows: 50px 50px auto;
+      grid-template-areas: 
+      'HT'
+      'SM'
+      'CD' 
+      ;
+      }
+      .menu{
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topo">
+      <main class="topo-Main">
+        <img src="./default.png" alt="Logo Ema">
+        <div class="action">
+          <svg  fill="white" xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 16 16"><path d="M6.4 10.4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm8.987 2.698l-3.665-3.664c.537-.927.85-2 .85-3.148a6.286 6.286 0 1 0-6.285 6.286 6.258 6.258 0 0 0 3.148-.852l3.667 3.665A1.624 1.624 0 0 0 16 14.366c0-.515-.241-.968-.613-1.268z"></path></svg>
+          <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 -60 386 386"><path d="M27.563 0h330.875c13.761.02 25.406 10.172 27.3 23.8L193 141.579.266 23.793C2.16 10.168 13.805.02 27.563 0zm330.875 265H27.563C12.348 264.98.02 252.656 0 237.441V40.04l189.352 115.715a7.003 7.003 0 0 0 7.296 0L386 40.039v197.402c-.02 15.211-12.348 27.54-27.563 27.559zm0 0"></path></svg>
+          <svg  xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 15 15"><path d="M12.303 6.74c0-2.34-1.393-4.328-3.328-5.037.016-.09.025-.183.025-.278A1.51 1.51 0 0 0 7.5-.094a1.51 1.51 0 0 0-1.485 1.737c-2.024.652-3.501 2.687-3.501 5.098 0 1.15-.664 2.188-.917 3.037H.75v2.784h5.484c-.843 1.266 0 2.532 1.266 2.532s2.11-1.266 1.266-2.532h5.484V9.778h-.89c-.317-.849-1.057-1.888-1.057-3.037z"></path></svg>
+          <img class="logoUsuario" src="./Character.png" alt="Usuário logado">
+        </div>        
+      </main>
+    </header>
+    <main class="menu">
+      <article class="modulos">
+        <ul>
+          <li><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 456741 420439"><path d="M-1 202532c0 28346 4906 49981 26171 71245 17122 17123 37735 26172 66118 26172V141005c0-62175 122377-157660 223468-77342 18516 14712 48274 51220 48274 72215v146125c0 19357-51963 97417-89726 97417-11786 0-14215-17945-30763-17945-42076 0-36417 58963-2564 58963 21319 0 19790-14499 31762-19510 11839-4955 11187 1818 37371-13901 41707-25038 67936-83192 70693-85687 4852-4390 10937-4151 18305-7330 70149-30267 76055-119899 18832-160770-16730-11950-18970-4254-28240-25596-5534-12739-10977-23433-19396-34440-18748-24507-30415-34488-57013-50658-82889-50395-203514-13863-246531 85241-9664 22266-8954 11567-28383 25453C19929 146425-1 171063-1 202532z"></path></svg></li>
+          <li class="Marker-Processo"><svg   xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 36 33"><path d="M29 0l7 7-7 7v-4h-2L9 28v1H0v-7h6L24 4h5V0zM15 10L9 5H0v6h6l4 4 5-5zm14 23l7-7-7-7v4h-2l-5-5-5 5 7 6h5v4z"></path></svg></li>
+          <li><svg  xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 49 45"><path d="M9 37l-9 8h26c13 0 23-10 23-23C49 10 39 0 26 0 14 0 4 10 4 22c0 6 2 11 5 15zm16-4h-2l-1-6h-4v-2h4l-1-5h-3v-2h3l-1-6h1l2 6h5l-1-6h2l1 6h5v2h-4l1 5h3v2h-3l1 6h-2l-1-6h-6l1 6zm4-13h-6l1 5h6l-1-5z"></path></svg></li>
+          <li><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 27" fill-rule="evenodd"><path class="fil0" d="M0 0h18l7 7v20H0V0zm23 9h-6V3l6 6z"></path></svg></li>
+          <li><svg  xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 70 67"><path d="M36 34l34-20v21l-7 4V25L43 37v20l14-9v7L36 67V34zm-1-2l34-20L47 0l-6 4 14 8-20 12-20-12 14-8-7-4L1 12l34 20zm-1 2L0 14v21l7 4V25l20 11v20l-14-8v7l21 12V34z"></path></svg></li>
+          <li><svg  xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 179 244"><path d="M98 244H81v-90H16L0 138l16-16h65V73H16L0 57l16-16h65V7l8-7 9 7v74h65l16 17-16 16H98v40z"></path></svg></li>
+        </ul>
+      </article>
+      <footer class="versao">
+        <svg  xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 12 12"><path d="M7.293 6L3.646 2.354a.5.5 0 0 1 .708-.708L8.707 6l-4.353 4.354a.5.5 0 1 1-.708-.708L7.293 6z"></path></svg>
+      </footer>
+    </main>
+    <div class="submenu">
+      <div class="submenu-Header">
+        <svg class="logoProcesso" iconColor="#30c995" xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 36 33"><path d="M29 0l7 7-7 7v-4h-2L9 28v1H0v-7h6L24 4h5V0zM15 10L9 5H0v6h6l4 4 5-5zm14 23l7-7-7-7v4h-2l-5-5-5 5 7 6h5v4z"></path></svg>
+        <p>Processos</p>
+      </div>
+      <div class="submenu-bottom">
+        <ul>
+          <li><p id="marcador">Iniciar</p></li>
+          <li><p>Coordenar</p></li>
+          <li><p>Colaborar</p></li>
+          <li><p>Colaborei</p></li>
+          <li><p>Encerradas</p></li>          
+        </ul>
+      </div>
+    </div>
+    <aside class="conteudo">
+      <div class="agrupador">
+        <header class="tituloAgrupador">
+          <p>Favoritos</p>
+        </header>
+        
+        <main class="container-Card">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </main>
+      </div>
+      <div class="agrupador">
+        <header class="tituloAgrupador">
+          <p>RH</p>
+        </header>
+        
+        <main class="container-Card">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </main>
+      </div>
+      <div class="agrupador">
+        <header class="tituloAgrupador">
+          <p>Desenvolvimento</p>
+        </header>
+        
+        <main class="container-Card">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </main>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
